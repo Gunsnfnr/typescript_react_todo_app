@@ -1,10 +1,19 @@
-
-// import { ThunkDispatch } from '@reduxjs/toolkit';
+import { ThunkAction } from 'redux-thunk';
+// import { Action } from 'redux';
+import { Dispatch } from 'redux';
 import locStorSlice from './locStorSlice';
-import { Dispatch } from "redux";
+// import { ThunkDispatch } from '@reduxjs/toolkit';
+
+declare module 'redux' {
+    export interface Dispatch {
+        <T extends ThunkAction<any, any, any, any>>(action: T): T extends ThunkAction<infer K, any, any, any> ? K : never;
+    }
+}
+
+
 
 // Dispatch<Action>
-export const localStorageActionCreator = (nameOfUser: string) => (dispatch: Dispatch<any>) => {
+export const localStorageActionCreator = (nameOfUser: string) => (dispatch: Dispatch) => {
   // export const localStorageActionCreator = (nameOfUser: string) => (dispatch: ThunkDispatch<any, any, any>) => {
   interface Itodo {
   id: string;
@@ -12,6 +21,9 @@ export const localStorageActionCreator = (nameOfUser: string) => (dispatch: Disp
   title: string;
   done: boolean;
 }
+
+dispatch(locStorSlice.actions.dataStart());
+
   const thisUserTodo: Itodo[] = [];
 
 
