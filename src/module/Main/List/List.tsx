@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 interface IListProps {
   nameOfUser: string,
 }
+
 export const List: React.FC<IListProps> = (props: IListProps) => {
   let [taskname, setTaskname] = useState<string>('');
   const dispatch = useAppDispatch();
@@ -55,7 +56,7 @@ useEffect(() => {
 
 const thisUserTodofromstate: Itodo[] = useAppSelector(state => state.locStor.thisUserTodo);
 console.log('thisUserTodofromstate: ', thisUserTodofromstate);
-//get data from localStorage
+
 const thisUserTodo: Itodo[] = [];
 
 for (let i:number = 0; i < localStorage.length; i++) {
@@ -67,8 +68,9 @@ for (let i:number = 0; i < localStorage.length; i++) {
     }
   }
 }
-
-dispatch(localStorageActionCreator(props.nameOfUser));
+useEffect(() => {
+  dispatch(localStorageActionCreator(props.nameOfUser));
+}, [dispatch, props.nameOfUser]);
 
 const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
   if (event.target instanceof HTMLElement) {    
@@ -83,7 +85,7 @@ const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
 return (
   <>
   <div className="app-container vh-100 w-100 d-flex align-items-center justify-content-center flex-column">
-      <h3>Todo App</h3>
+    <h3>Todo App</h3>
   <form className="d-flex align-items-center mb-3" onSubmit={handleSubmit}>
     <label className="form-group me-3 mb-0">
       <input type="text"

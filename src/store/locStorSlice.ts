@@ -1,5 +1,5 @@
-// import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {createSlice} from '@reduxjs/toolkit';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+// import {createSlice} from '@reduxjs/toolkit';
 
 interface Itodo {
   id: string;
@@ -23,8 +23,8 @@ export const locStorSlice = createSlice({
     dataStart: (state: IInitialState) => {
       state.thisUserTodo = [];
     },
-    updatedData: (state: IInitialState, action) => {
-      // updatedData: (state: IInitialState, action: PayloadAction<Itodo[]>) => {
+    // updatedData: (state: IInitialState, action) => {
+      updatedData: (state: IInitialState, action: PayloadAction<Itodo[]>) => {
       state.thisUserTodo = action.payload;
     },
   },
