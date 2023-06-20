@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { EnterName } from './EnterName/EnterName';
 import { List } from './List/List';
-import style from './Main.module.css';
 
 
 
@@ -16,9 +15,9 @@ export const Main:React.FC = () => {
   };
 
   return (
-    <div className={style.main}>
+    <>
       {!value && <EnterName updateData = {updateData} />}
       {value && <List nameOfUser = {nameOfUser}/>}
-    </div>
+    </>
   )
 }
