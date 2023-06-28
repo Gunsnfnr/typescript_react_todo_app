@@ -116,17 +116,17 @@ return (
     <label className="form-group me-3 mb-0">
       <input type="text"
         className="form-control"
-        placeholder="Введите задачу"
+        placeholder="Add task"
         value={taskname}
         onChange={handleChange}
       />
     </label>
     <button type="submit" className="btn btn-primary me-3" ref={submitButton}>
-      Сохранить
+      Save
     </button>
     <button type="reset" className="btn btn-warning"
     onClick={clearInput}>
-      Очистить
+      Clear
     </button>
   </form>
   <div className="p-2 table-wrapper">
@@ -134,9 +134,9 @@ return (
       {thisUserTodofromstate.length !== 0 && <thead>
         <tr>
           <th className='text-center'>№</th>
-          <th className='text-center'>Задача</th>
-          <th className='text-center'>Статус</th>
-          <th className='text-center'>Действия</th>
+          <th className='text-center'>Task</th>
+          <th className='text-center'>Status</th>
+          <th className='text-center'>Actions</th>
         </tr>
       </thead>}
       <tbody>
@@ -151,13 +151,15 @@ return (
               <td className={`${item.done ? 'text-decoration-line-through' : 'task'}`}>
                 {item.title}
               </td>
-              <td>В процессе</td>
+              {item.done ?
+              <td>Completed</td> :
+              <td>In progress</td>}
               <td>
                 <button className="btn btn-danger me-3" onClick={handleDelete}>
-                  Удалить
+                  Delete
                 </button>
                 <button className="btn btn-success" onClick={handleComplete} disabled={item.done ? true : false}>
-                  Завершить
+                  Complete
                 </button>
               </td>
             </tr>
